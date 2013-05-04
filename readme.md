@@ -15,7 +15,7 @@ Generates a build number in the same way as ant.
                 <version>1.0-SNAPSHOT</version>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>create</goal>
                         </goals>
