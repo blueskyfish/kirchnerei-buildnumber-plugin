@@ -42,12 +42,12 @@ public class BuildNumberMojo extends AbstractMojo {
 
 	public static final String PROPERTY_COMMENT = "This is the build number. Do not change directly";
 	/**
-     * Location of the file.
+	 * Location of the file.
 	 *
-     * @parameter expression="${project.build.directory}"
-     * @required
-     */
-    private File outputDirectory;
+	 * @parameter expression="${project.build.directory}"
+	 * @required
+	 */
+	private File outputDirectory;
 
 	/**
 	 * The name of the file.
@@ -72,32 +72,32 @@ public class BuildNumberMojo extends AbstractMojo {
 	 */
 	private MavenProject project;
 
-    public void execute() throws MojoExecutionException {
-	    try {
-	        File file = new File(outputDirectory, buildFile);
+	public void execute() throws MojoExecutionException {
+		try {
+			File file = new File(outputDirectory, buildFile);
 
-		    int buildNumber = readBuildNumberFrom(file);
-		    if (buildNumber <= 0) {
-			    getLog().info("create new build number with '1'");
-			    buildNumber = 1;
-		    } else {
-			    buildNumber++;
-			    getLog().info("build number '" + buildNumber + "' will be use");
-		    }
-		    writeBuildNumberTo(file, buildNumber);
-		    Properties prop = project.getProperties();
-		    prop.put(propertyName, String.valueOf(buildNumber));
-	    } catch (IOException e) {
-		    getLog().error(e);
-		    throw new MojoExecutionException("could not handle the build number", e);
-	    }
-    }
+			int buildNumber = readBuildNumberFrom(file);
+			if (buildNumber <= 0) {
+				getLog().info("create new build number with '1'");
+				buildNumber = 1;
+			} else {
+				buildNumber++;
+				getLog().info("build number '" + buildNumber + "' will be use");
+			}
+			writeBuildNumberTo(file, buildNumber);
+			Properties prop = project.getProperties();
+			prop.put(propertyName, String.valueOf(buildNumber));
+		} catch (IOException e) {
+			getLog().error(e);
+			throw new MojoExecutionException("could not handle the build number", e);
+		}
+	}
 
 	public void setProject(MavenProject project) {
 		this.project = project;
 	}
 
-	int readBuildNumberFrom(File file) throws IOException{
+	int readBuildNumberFrom(File file) throws IOException {
 		if (!file.exists()) {
 			return -1;
 		} else {
