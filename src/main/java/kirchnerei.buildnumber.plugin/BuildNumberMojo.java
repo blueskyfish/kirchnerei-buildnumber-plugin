@@ -64,6 +64,13 @@ public class BuildNumberMojo extends AbstractMojo {
 	private String propertyName;
 
 	/**
+	 * Flag for changing the buildnumber
+	 *
+	 * @parameter default-value=false
+	 */
+	private boolean increment;
+
+	/**
 	 * The maven project.
 	 *
 	 * @parameter expression="${project}"
@@ -110,11 +117,16 @@ public class BuildNumberMojo extends AbstractMojo {
 	}
 
 	void writeBuildNumberTo(File file, int buildNumber) throws IOException {
+		if (!increment) {
+			getLog().info("no increment the buildnumber.");
+			return;
+		}
 		if (!file.exists()) {
 			File parent = file.getParentFile();
 			parent.mkdirs();
 			file.createNewFile();
 		}
+		getLog().info("store the buildnumber");
 		OutputStream output = new FileOutputStream(file);
 		Properties prop = new Properties();
 		prop.setProperty(propertyName, String.valueOf(buildNumber));
