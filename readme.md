@@ -25,10 +25,20 @@ Generates a build number in the same way as ant.
                     <buildFile>build.properties</buildFile>
                     <propertyName>buildnumber</propertyName>
                     <outputDirectory>${basedir}</outputDirectory>
+                    <increment>true|false</increment>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+## Configuration
+
++ buildFile: The name of the property file that store the build number
++ propertyName: The name of the property
++ increment (boolean): if the value is true, then it will increment the build number, otherwise
+  it use without incremented.
+
+
 
 # License
 
