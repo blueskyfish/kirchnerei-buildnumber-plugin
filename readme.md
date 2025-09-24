@@ -43,7 +43,7 @@ Generates a build number in the same way as ant.
 # License
 
 
-	Copyright 2013 Mulder3
+	Copyright 2025 Blueskyfish
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
